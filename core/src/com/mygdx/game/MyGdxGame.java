@@ -73,21 +73,21 @@ public class MyGdxGame extends ApplicationAdapter {
         }
 
         if (Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
-            Cell cell = grid.getCellInPositionFromMouse(Gdx.input.getX(), MyGdxGame.HEIGHT - Gdx.input.getY());
-            if (cell != null) {
+            Cell cell = grid.getCellInPosition(Gdx.input.getX(), MyGdxGame.HEIGHT - Gdx.input.getY());
+            if (cell != null && !cell.isPainted()) {
                 cell.paint();
             }
         }
 
         if (Gdx.input.isButtonPressed(Input.Buttons.RIGHT)) {
-            Cell cell = grid.getCellInPositionFromMouse(Gdx.input.getX(), MyGdxGame.HEIGHT - Gdx.input.getY());
-            if (cell != null) {
+            Cell cell = grid.getCellInPosition(Gdx.input.getX(), MyGdxGame.HEIGHT - Gdx.input.getY());
+            if (cell != null && cell.isPainted()) {
                 cell.erase();
             }
         }
 
         if (Gdx.input.isButtonJustPressed(Input.Buttons.MIDDLE)) {
-            Cell cell = grid.getCellInPositionFromMouse(Gdx.input.getX(), MyGdxGame.HEIGHT - Gdx.input.getY());
+            Cell cell = grid.getCellInPosition(Gdx.input.getX(), MyGdxGame.HEIGHT - Gdx.input.getY());
             Cell[] neighbours = cell.getNeighbours();
             int[] indexes = new int[]{1, 4, 5, 6, 7};
             for (int i : indexes) {

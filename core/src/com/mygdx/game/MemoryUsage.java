@@ -13,8 +13,8 @@ public class MemoryUsage {
     private final Color usedColor = Color.FIREBRICK;
 
     public MemoryUsage() {
-        this.total = new Rectangle(0, 0, 10, (Runtime.getRuntime().totalMemory() / 1_000_000f));
-        this.used = new Rectangle(0, 0, 10,((Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1_000_000f));
+        this.total = new Rectangle(0, 0, 5, (Runtime.getRuntime().totalMemory() / 1_000_000f));
+        this.used = new Rectangle(0, 0, 5, ((Runtime.getRuntime().totalMemory() - Runtime.getRuntime().freeMemory()) / 1_000_000f));
     }
 
     public void draw(ShapeRenderer shapeRenderer) {

@@ -1,15 +1,16 @@
 package com.mygdx.game;
 
-import java.util.LinkedList;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Grid {
 
-    private LinkedList<Cell> cells;
+    private ArrayList<Cell> cells;
     private final int cellSize = MyGdxGame.CELL_SIZE;
+    private int maxRows = MyGdxGame.HEIGHT / cellSize;
 
     public Grid() {
-        cells = new LinkedList<>();
+        cells = new ArrayList<>();
     }
 
     public void init() {
@@ -39,20 +40,16 @@ public class Grid {
         return cells;
     }
 
-    public Cell getCellInPositionFromMouse(float x, float y) {
-         // mouse position is reversed
-        return getCellInPosition(x, y);
-    }
-
     public Cell getCellInPosition(float x, float y) {
-        for (Cell cell : cells) {
-            if ((x >= cell.getX() && x <= cell.getX() + cellSize) &&
-                    (y >= cell.getY() && y <= cell.getY() + cellSize)) {
+        int indexX = (int) (x / cellSize);
+        int indexY = (int) (y / cellSize);
+        int index = (indexX) * maxRows + indexY;
 
-                return cell;
-            }
+        if (index < 0 || index >= cells.size()) {
+            return null;
         }
-        return null;
+
+        return cells.get(index);
     }
 
     public Cell[] getNeighbours(Cell cell) {
